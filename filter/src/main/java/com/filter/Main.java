@@ -5,6 +5,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -12,8 +13,23 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     public static void main(String[] args) {
         try {
+            int valor;
+            Scanner scanner = new Scanner(System.in);
+
+            try {
+                System.err.println("1-Img pesada | 2-Img leve");
+                valor = scanner.nextInt();
+
+            } catch (Exception e) {
+                System.err.println("Erro ao ler a entrada: " + e.getMessage());
+                return;
+
+            } finally {
+                scanner.close();
+            }
+
             // Carrega a imagem
-            File inputFile = new File("img2.jpg");
+            File inputFile = new File(valor == 1 ? "img.jpg" : "img2.jpg");
             BufferedImage imagem = ImageIO.read(inputFile);
 
             // Calcula o tempo de execução da edição da imagem
